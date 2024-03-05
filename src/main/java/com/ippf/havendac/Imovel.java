@@ -2,9 +2,15 @@ package com.ippf.havendac;
 
 import com.ippf.havendac.ENUM.TipoImovel;
 import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
 @Table(name = "tb_imovel")
+@Getter
+@Setter
+@NoArgsConstructor
+@ToString
+@EqualsAndHashCode
 public class Imovel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,17 +34,4 @@ public class Imovel {
         this.possuiPiscina = possuiPiscina;
     }
 
-    public Imovel() {
-    }
-
-    @Override
-    public String toString() {
-        return "Imovel{" +
-                "descricao='" + descricao + '\'' +
-                ", tipo=" + tipo +
-                ", isDisponivel=" + isDisponivel +
-                ", isZonaRural=" + isZonaRural +
-                ", possuiPiscina=" + possuiPiscina +
-                '}';
-    }
 }

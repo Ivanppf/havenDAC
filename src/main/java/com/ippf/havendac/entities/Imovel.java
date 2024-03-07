@@ -1,4 +1,4 @@
-package com.ippf.havendac;
+package com.ippf.havendac.entities;
 
 import com.ippf.havendac.ENUM.TipoImovel;
 import jakarta.persistence.*;
@@ -11,12 +11,10 @@ import lombok.*;
 @NoArgsConstructor
 @ToString
 @EqualsAndHashCode
-public class Imovel {
+public class Imovel implements HavenEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(columnDefinition = "TEXT")
-    private String descricao;
     @Enumerated(EnumType.STRING)
     private TipoImovel tipo;
     @Column(name = "disponivel")
@@ -25,6 +23,8 @@ public class Imovel {
     private boolean isZonaRural;
     @Column(name = "possui_piscina")
     private boolean possuiPiscina;
+    @Column(columnDefinition = "TEXT")
+    private String descricao;
 
     public Imovel(String descricao, TipoImovel tipo, boolean isDisponivel, boolean isZonaRural, boolean possuiPiscina) {
         this.descricao = descricao;

@@ -2,13 +2,14 @@ package com.ippf.havendac.view;
 
 import com.ippf.havendac.ENUM.TipoImovel;
 import com.ippf.havendac.controllers.ImovelControllerImpl;
+import com.ippf.havendac.entities.HavenEntity;
 import com.ippf.havendac.entities.Imovel;
 import lombok.AllArgsConstructor;
 
 import java.util.List;
 
 @AllArgsConstructor
-public class MenuImovel implements Menu<Imovel> {
+public class MenuImovel implements Menu {
 
     private MyCustomIO myCustomIO;
     private ImovelControllerImpl imovelController;
@@ -45,8 +46,8 @@ public class MenuImovel implements Menu<Imovel> {
     }
 
     @Override
-    public List<Imovel> getAll() {
-        return imovelController.getAll();
+    public List<HavenEntity> getAll() {
+        return imovelController.getAll().stream().map((item) -> (HavenEntity) item).toList();
     }
 
     @Override

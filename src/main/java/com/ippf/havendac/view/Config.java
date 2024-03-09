@@ -13,7 +13,7 @@ public class Config implements CommandLineRunner {
     private final ComodoControllerImpl comodoController;
     private final ImovelControllerImpl imovelController;
     private final MyCustomIO myCustomIO;
-    private Menu<?> menu;
+    private Menu menu;
 
 
     public String showMenuEntidades() {

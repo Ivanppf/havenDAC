@@ -27,7 +27,7 @@ public class ComodoControllerImpl implements GenericCRUDController<Comodo> {
     @Override
     public String save(Comodo obj) {
         comodoService.save(obj);
-        return "Cômodo com id " + obj.getId() + " cadastrado com sucesso";
+        return "Cômodo cadastrado com sucesso";
     }
 
     @Override

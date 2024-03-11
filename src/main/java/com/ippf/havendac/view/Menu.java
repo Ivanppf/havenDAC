@@ -10,6 +10,6 @@ public interface Menu {
 
     List<HavenEntity> getAll();
 
-    void save();
+    String save();
 
 }

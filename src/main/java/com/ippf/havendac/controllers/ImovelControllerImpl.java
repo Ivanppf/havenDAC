@@ -26,7 +26,7 @@ public class ImovelControllerImpl implements GenericCRUDController<Imovel> {
     @Override
     public String save(Imovel obj) {
         imovelService.save(obj);
-        return "Imovel com id " + obj.getId() + " cadastrado com sucesso";
+        return "Imovel cadastrado com sucesso";
     }
 
     @Override

@@ -35,8 +35,8 @@ public class MenuComodo implements Menu {
     }
 
     @Override
-    public void save() {
-        comodoController.save(create());
+    public String save() {
+        return comodoController.save(create());
     }
 
 

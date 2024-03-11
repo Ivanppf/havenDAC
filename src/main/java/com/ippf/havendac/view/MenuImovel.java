@@ -25,7 +25,7 @@ public class MenuImovel implements Menu {
                 5 - POUSADA
                 6 - FAZENDA
                 ->\s""");
-        TipoImovel tipo = null;
+        TipoImovel tipo;
         switch (myCustomIO.read()) {
             case "1" -> tipo = TipoImovel.APARTAMENTO;
             case "2" -> tipo = TipoImovel.CASA;
@@ -33,6 +33,7 @@ public class MenuImovel implements Menu {
             case "4" -> tipo = TipoImovel.CHALE;
             case "5" -> tipo = TipoImovel.POUSADA;
             case "6" -> tipo = TipoImovel.FAZENDA;
+            default -> throw new RuntimeException("Opção inválida");
         }
         myCustomIO.print("Descrição do imóvel: ");
         String descricao = myCustomIO.read();
@@ -51,8 +52,8 @@ public class MenuImovel implements Menu {
     }
 
     @Override
-    public void save() {
-        imovelController.save(create());
+    public String save() {
+        return imovelController.save(create());
     }
 
 }

@@ -39,7 +39,7 @@ public class Config implements CommandLineRunner {
             myCustomIO.print(menuImovel);
             String resp = myCustomIO.read();
             switch (resp) {
-                case "1" -> menu.save();
+                case "1" -> myCustomIO.print(menu.save());
                 case "2" -> menu.getAll().forEach((item) -> myCustomIO.print(item.toString() + "\n"));
                 case "S" -> continua2 = false;
             }

@@ -5,10 +5,12 @@ import com.ippf.havendac.controllers.ImovelControllerImpl;
 import com.ippf.havendac.entities.HavenEntity;
 import com.ippf.havendac.entities.Imovel;
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @AllArgsConstructor
+@Component
 public class MenuImovel implements Menu {
 
     private MyCustomIO myCustomIO;

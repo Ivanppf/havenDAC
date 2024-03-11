@@ -1,7 +1,5 @@
 package com.ippf.havendac.view;
 
-import com.ippf.havendac.controllers.ComodoControllerImpl;
-import com.ippf.havendac.controllers.ImovelControllerImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -10,8 +8,8 @@ import org.springframework.context.annotation.Configuration;
 @RequiredArgsConstructor
 public class Config implements CommandLineRunner {
 
-    private final ComodoControllerImpl comodoController;
-    private final ImovelControllerImpl imovelController;
+    private final MenuComodo menuComodo;
+    private final MenuImovel menuImovel;
     private final MyCustomIO myCustomIO;
     private Menu menu;
 
@@ -56,8 +54,8 @@ public class Config implements CommandLineRunner {
                     continua = false;
                 } else {
                     switch (resp) {
-                        case "1" -> menu = new MenuImovel(myCustomIO, imovelController);
-                        case "2" -> menu = new MenuComodo(myCustomIO, imovelController, comodoController);
+                        case "1" -> menu = menuImovel;
+                        case "2" -> menu = menuComodo;
                     }
                     showMenuOpcoes();
                 }

@@ -6,10 +6,12 @@ import com.ippf.havendac.entities.Comodo;
 import com.ippf.havendac.entities.HavenEntity;
 import com.ippf.havendac.entities.Imovel;
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @AllArgsConstructor
+@Component
 public class MenuComodo implements Menu {
 
     private MyCustomIO myCustomIO;

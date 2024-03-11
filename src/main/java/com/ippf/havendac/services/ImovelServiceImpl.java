@@ -25,20 +25,20 @@ public class ImovelServiceImpl implements GenericCRUDService<Imovel> {
     }
 
     @Override
-    public Imovel save(Imovel obj) {
-        return imovelRepository.save(obj);
+    public void save(Imovel obj) {
+        imovelRepository.save(obj);
     }
 
     @Override
-    public Imovel update(int id, Imovel obj) {
+    public void update(int id, Imovel obj) {
         findById(id);
-        return imovelRepository.save(obj);
+        imovelRepository.save(obj);
     }
 
     @Override
-    public String deleteById(int id) {
+    public void deleteById(int id) {
         findById(id);
         imovelRepository.deleteById(id);
-        return "Imovel com id " + id + " deletado com sucesso";
+
     }
 }

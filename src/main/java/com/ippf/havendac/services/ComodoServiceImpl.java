@@ -24,22 +24,21 @@ public class ComodoServiceImpl implements GenericCRUDService<Comodo> {
     }
 
     @Override
-    public Comodo save(Comodo obj) {
+    public void save(Comodo obj) {
         float area = obj.getComprimento() * obj.getLargura();
         obj.setArea(area);
-        return comodoRepository.save(obj);
+        comodoRepository.save(obj);
     }
 
     @Override
-    public Comodo update(int id, Comodo obj) {
+    public void update(int id, Comodo obj) {
         findById(id);
-        return comodoRepository.save(obj);
+        comodoRepository.save(obj);
     }
 
     @Override
-    public String deleteById(int id) {
+    public void deleteById(int id) {
         findById(id);
         comodoRepository.deleteById(id);
-        return "Cômodo com id " + id + " deletado com sucesso";
     }
 }

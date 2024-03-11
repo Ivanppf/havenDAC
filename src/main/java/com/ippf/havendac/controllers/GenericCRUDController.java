@@ -5,13 +5,13 @@ import com.ippf.havendac.entities.HavenEntity;
 import java.util.List;
 
 public interface GenericCRUDController<T extends HavenEntity> {
-    public T getById(int id);
+    T getById(int id);
 
-    public List<T> getAll();
+    List<T> getAll();
 
-    public T save(T obj);
+    String save(T obj);
 
-    public T update(int id, T obj);
+    String update(int id, T obj);
 
-    public String deleteById(int id);
+    String deleteById(int id);
 }

@@ -6,10 +6,10 @@ import java.util.List;
 
 public interface Menu {
 
-    public HavenEntity create();
+    HavenEntity create();
 
-    public List<HavenEntity> getAll();
+    List<HavenEntity> getAll();
 
-    public void save();
+    void save();
 
 }

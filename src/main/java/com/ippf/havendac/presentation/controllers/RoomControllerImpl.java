@@ -1,43 +1,55 @@
 package com.ippf.havendac.presentation.controllers;
 
+import com.ippf.havendac.business.services.ConverterService;
 import com.ippf.havendac.business.services.RoomServiceImpl;
 import com.ippf.havendac.model.entities.Room;
+import com.ippf.havendac.presentation.DTO.RoomDTO;
 import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
+@RequestMapping("/rooms")
 @AllArgsConstructor
-public class RoomControllerImpl implements GenericCRUDController<Room> {
+public class RoomControllerImpl implements GenericCRUDController<RoomDTO> {
 
     private final RoomServiceImpl roomService;
+    private final ConverterService converterService;
 
     @Override
-    public Room getById(int id) {
-        return roomService.findById(id);
+    @GetMapping("{id}")
+    public ResponseEntity<RoomDTO> getById(@PathVariable int id) {
+        return ResponseEntity.ok().body(new RoomDTO(roomService.findById(id)));
     }
 
     @Override
-    public List<Room> getAll() {
-        return roomService.findAll();
+    @GetMapping
+    public ResponseEntity<List<RoomDTO>> getAll() {
+        return ResponseEntity.ok().body(roomService.findAll().stream().map(RoomDTO::new).toList());
     }
 
     @Override
-    public String save(Room obj) {
-        roomService.save(obj);
-        return "Room registered successfully";
+    @PostMapping
+    public ResponseEntity<String> save(@RequestBody RoomDTO obj) {
+        Room room = converterService.dtoToRoom(obj);
+        roomService.save(room);
+        return ResponseEntity.ok().body("Room registered successfully");
     }
 
     @Override
-    public String update(int id, Room obj) {
-        roomService.save(obj);
-        return "Room with id " + id + " updated successfully";
+    @PutMapping("{id}")
+    public ResponseEntity<String> update(@PathVariable int id, @RequestBody RoomDTO obj) {
+        Room room = converterService.dtoToRoom(obj);
+        roomService.save(room);
+        return ResponseEntity.ok().body("Room with id " + id + " updated successfully");
     }
 
     @Override
-    public String deleteById(int id) {
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> deleteById(@PathVariable int id) {
         roomService.deleteById(id);
-        return "Room with id " + id + " deleted successfully";
+        return ResponseEntity.ok().body("Room with id " + id + " deleted successfully");
     }
 }

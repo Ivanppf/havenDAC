@@ -3,9 +3,9 @@ package com.ippf.havendac.model.ENUM;
 public enum PropertyType {
     APARTMENT,
     HOUSE,
-    ROOM,
+    BEDROOM,
     CABIN,
     BED_N_BREAKFASTS,
-    FARMS
+    FARM
 
 }

@@ -1,17 +1,18 @@
 package com.ippf.havendac.presentation.controllers;
 
-import com.ippf.havendac.model.entities.HavenEntity;
+import com.ippf.havendac.presentation.DTO.DTO;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
-public interface GenericCRUDController<T extends HavenEntity> {
-    T getById(int id);
+public interface GenericCRUDController<T extends DTO> {
+    ResponseEntity<T> getById(int id);
 
-    List<T> getAll();
+    ResponseEntity<List<T>> getAll();
 
-    String save(T obj);
+    ResponseEntity<String> save(T obj);
 
-    String update(int id, T obj);
+    ResponseEntity<String> update(int id, T obj);
 
-    String deleteById(int id);
+    ResponseEntity<String> deleteById(int id);
 }

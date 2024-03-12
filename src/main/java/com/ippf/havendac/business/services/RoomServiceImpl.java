@@ -41,4 +41,5 @@ public class RoomServiceImpl implements GenericCRUDService<Room> {
         findById(id);
         roomRepository.deleteById(id);
     }
+
 }

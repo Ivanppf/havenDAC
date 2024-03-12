@@ -1,6 +1,6 @@
-package com.ippf.havendac.controllers;
+package com.ippf.havendac.presentation.controllers;
 
-import com.ippf.havendac.entities.HavenEntity;
+import com.ippf.havendac.model.entities.HavenEntity;
 
 import java.util.List;
 

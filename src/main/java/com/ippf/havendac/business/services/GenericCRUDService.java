@@ -1,6 +1,6 @@
-package com.ippf.havendac.services;
+package com.ippf.havendac.business.services;
 
-import com.ippf.havendac.entities.HavenEntity;
+import com.ippf.havendac.model.entities.HavenEntity;
 
 import java.util.List;
 

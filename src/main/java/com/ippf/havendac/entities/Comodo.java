@@ -16,7 +16,9 @@ public class Comodo implements HavenEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(nullable = false)
     private float comprimento;
+    @Column(nullable = false)
     private float largura;
     private float area;
     @ManyToOne(fetch = FetchType.EAGER)

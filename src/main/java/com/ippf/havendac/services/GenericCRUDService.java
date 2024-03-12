@@ -6,14 +6,14 @@ import java.util.List;
 
 public interface GenericCRUDService<T extends HavenEntity> {
 
-    public T findById(int id);
+    T findById(int id);
 
-    public List<T> findAll();
+    List<T> findAll();
 
-    public T save(T obj);
+    void save(T obj);
 
-    public T update(int id, T obj);
+    void update(int id, T obj);
 
-    public String deleteById(int id);
+    void deleteById(int id);
 
 }

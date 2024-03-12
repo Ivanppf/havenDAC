@@ -25,17 +25,20 @@ public class ComodoControllerImpl implements GenericCRUDController<Comodo> {
     }
 
     @Override
-    public Comodo save(Comodo obj) {
-        return comodoService.save(obj);
+    public String save(Comodo obj) {
+        comodoService.save(obj);
+        return "Cômodo cadastrado com sucesso";
     }
 
     @Override
-    public Comodo update(int id, Comodo obj) {
-        return comodoService.save(obj);
+    public String update(int id, Comodo obj) {
+        comodoService.save(obj);
+        return "Cômodo com id " + id + " atualizado com sucesso";
     }
 
     @Override
     public String deleteById(int id) {
-        return comodoService.deleteById(id);
+        comodoService.deleteById(id);
+        return "Cômodo com id " + id + " deletado com sucesso";
     }
 }

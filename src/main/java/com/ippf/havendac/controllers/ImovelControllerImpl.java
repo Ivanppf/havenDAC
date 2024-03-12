@@ -24,17 +24,20 @@ public class ImovelControllerImpl implements GenericCRUDController<Imovel> {
     }
 
     @Override
-    public Imovel save(Imovel obj) {
-        return imovelService.save(obj);
+    public String save(Imovel obj) {
+        imovelService.save(obj);
+        return "Imovel cadastrado com sucesso";
     }
 
     @Override
-    public Imovel update(int id, Imovel obj) {
-        return imovelService.update(id, obj);
+    public String update(int id, Imovel obj) {
+        imovelService.update(id, obj);
+        return "Imovel com id " + id + " atualizado com sucesso";
     }
 
     @Override
     public String deleteById(int id) {
-        return imovelService.deleteById(id);
+        imovelService.deleteById(id);
+        return "Imovel com id " + id + " deletado com sucesso";
     }
 }

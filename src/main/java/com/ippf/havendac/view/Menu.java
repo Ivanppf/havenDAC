@@ -4,12 +4,12 @@ import com.ippf.havendac.entities.HavenEntity;
 
 import java.util.List;
 
-public interface Menu<T extends HavenEntity> {
+public interface Menu {
 
-    public T create();
+    HavenEntity create();
 
-    public List<T> getAll();
+    List<HavenEntity> getAll();
 
-    public void save();
+    String save();
 
 }

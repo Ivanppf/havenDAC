@@ -3,13 +3,16 @@ package com.ippf.havendac.view;
 import com.ippf.havendac.controllers.ComodoControllerImpl;
 import com.ippf.havendac.controllers.ImovelControllerImpl;
 import com.ippf.havendac.entities.Comodo;
+import com.ippf.havendac.entities.HavenEntity;
 import com.ippf.havendac.entities.Imovel;
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @AllArgsConstructor
-public class MenuComodo implements Menu<Comodo> {
+@Component
+public class MenuComodo implements Menu {
 
     private MyCustomIO myCustomIO;
     private ImovelControllerImpl imovelController;
@@ -29,13 +32,13 @@ public class MenuComodo implements Menu<Comodo> {
     }
 
     @Override
-    public List<Comodo> getAll() {
-        return comodoController.getAll();
+    public List<HavenEntity> getAll() {
+        return comodoController.getAll().stream().map((item) -> (HavenEntity) item).toList();
     }
 
     @Override
-    public void save() {
-        comodoController.save(create());
+    public String save() {
+        return comodoController.save(create());
     }
 
 

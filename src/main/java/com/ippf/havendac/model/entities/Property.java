@@ -1,7 +1,7 @@
 package com.ippf.havendac.model.entities;
 
 import com.ippf.havendac.model.ENUM.PropertyType;
-import com.ippf.havendac.presentation.DTO.PropertyDTO;
+import com.ippf.havendac.presentation.DTO.request.PropertyRequestDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -28,12 +28,12 @@ public class Property implements HavenEntity {
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    public Property(PropertyDTO propertyDTO) {
-        description = propertyDTO.description();
-        type = propertyDTO.type();
-        isAvailable = propertyDTO.isAvailable();
-        isCountryside = propertyDTO.isCountryside();
-        hasSwimmingPool = propertyDTO.hasSwimmingPool();
+    public Property(PropertyRequestDTO propertyRequestDTO) {
+        description = propertyRequestDTO.description();
+        type = propertyRequestDTO.type();
+        isAvailable = propertyRequestDTO.isAvailable();
+        isCountryside = propertyRequestDTO.isCountryside();
+        hasSwimmingPool = propertyRequestDTO.hasSwimmingPool();
     }
 
 }

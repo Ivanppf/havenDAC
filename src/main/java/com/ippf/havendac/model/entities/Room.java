@@ -1,6 +1,6 @@
 package com.ippf.havendac.model.entities;
 
-import com.ippf.havendac.presentation.DTO.RoomDTO;
+import com.ippf.havendac.presentation.DTO.request.RoomRequestDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -24,8 +24,8 @@ public class Room implements HavenEntity {
     @JoinColumn(name = "property_id", foreignKey = @ForeignKey(name = "property"), nullable = false)
     private Property property;
 
-    public Room(RoomDTO roomDTO) {
-        length = roomDTO.length();
-        width = roomDTO.width();
+    public Room(RoomRequestDTO roomRequestDTO) {
+        length = roomRequestDTO.length();
+        width = roomRequestDTO.width();
     }
 }

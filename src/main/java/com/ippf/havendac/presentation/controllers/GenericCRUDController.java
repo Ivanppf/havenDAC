@@ -1,18 +1,19 @@
 package com.ippf.havendac.presentation.controllers;
 
-import com.ippf.havendac.presentation.DTO.DTO;
+import com.ippf.havendac.presentation.DTO.request.RequestDTO;
+import com.ippf.havendac.presentation.DTO.response.ResponseDTO;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
-public interface GenericCRUDController<T extends DTO> {
-    ResponseEntity<T> getById(int id);
+public interface GenericCRUDController<REQUEST extends RequestDTO, RESPONSE extends ResponseDTO> {
+    ResponseEntity<RESPONSE> getById(int id);
 
-    ResponseEntity<List<T>> getAll();
+    ResponseEntity<List<RESPONSE>> getAll();
 
-    ResponseEntity<String> save(T obj);
+    ResponseEntity<RESPONSE> save(REQUEST obj);
 
-    ResponseEntity<String> update(int id, T obj);
+    ResponseEntity<String> update(int id, REQUEST obj);
 
     ResponseEntity<String> deleteById(int id);
 }

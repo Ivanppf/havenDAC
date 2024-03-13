@@ -2,7 +2,7 @@ package com.ippf.havendac.business.services;
 
 import com.ippf.havendac.model.entities.Property;
 import com.ippf.havendac.model.entities.Room;
-import com.ippf.havendac.presentation.DTO.RoomDTO;
+import com.ippf.havendac.presentation.DTO.request.RoomRequestDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,9 +11,9 @@ import org.springframework.stereotype.Service;
 public class ConverterService {
     private PropertyServiceImpl propertyService;
 
-    public Room dtoToRoom(RoomDTO roomDTO) {
-        Property property = propertyService.findById(roomDTO.propertyId());
-        Room room = new Room(roomDTO);
+    public Room dtoToRoom(RoomRequestDTO roomRequestDTO) {
+        Property property = propertyService.findById(roomRequestDTO.propertyId());
+        Room room = new Room(roomRequestDTO);
         room.setProperty(property);
         return room;
     }

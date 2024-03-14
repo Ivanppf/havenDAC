@@ -7,10 +7,12 @@ import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.annotation.SessionScope;
 
 import java.util.List;
 
 @AllArgsConstructor
+@SessionScope
 @Service
 public class PropertyServiceImpl implements PropertyService {
 

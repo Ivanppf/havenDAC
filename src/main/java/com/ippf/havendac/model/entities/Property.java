@@ -12,7 +12,7 @@ import lombok.*;
 @NoArgsConstructor
 @ToString
 @EqualsAndHashCode
-public class Property implements HavenEntity {
+public class Property {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

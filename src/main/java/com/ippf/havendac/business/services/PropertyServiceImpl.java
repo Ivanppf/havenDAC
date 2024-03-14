@@ -32,14 +32,14 @@ public class PropertyServiceImpl implements PropertyService {
     }
 
     @Override
-    public void save(Property obj) {
-        propertyRepository.save(obj);
+    public Property save(Property obj) {
+        return propertyRepository.save(obj);
     }
 
     @Override
-    public void update(int id, Property obj) {
+    public Property update(int id, Property obj) {
         existsById(id);
-        propertyRepository.save(obj);
+        return propertyRepository.save(obj);
     }
 
     @Override

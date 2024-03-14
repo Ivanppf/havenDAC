@@ -7,9 +7,9 @@ import java.util.List;
 public interface RoomService {
     List<Room> find(Room roomFilter);
 
-    void save(Room obj);
+    Room save(Room obj);
 
-    void update(int id, Room obj);
+    Room update(int id, Room obj);
 
     void deleteById(int id);
 

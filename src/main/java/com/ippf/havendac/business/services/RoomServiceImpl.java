@@ -25,16 +25,16 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public void save(Room obj) {
+    public Room save(Room obj) {
         float area = obj.getLength() * obj.getWidth();
         obj.setArea(area);
-        roomRepository.save(obj);
+        return roomRepository.save(obj);
     }
 
     @Override
-    public void update(int id, Room obj) {
+    public Room update(int id, Room obj) {
         existsById(id);
-        roomRepository.save(obj);
+        return roomRepository.save(obj);
     }
 
     @Override

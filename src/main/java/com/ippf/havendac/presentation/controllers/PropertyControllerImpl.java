@@ -40,7 +40,7 @@ public class PropertyControllerImpl implements PropertyController {
     public ResponseEntity save(@RequestBody PropertyRequestDTO obj) {
         try {
             Property property = new Property(obj);
-            propertyService.save(property);
+            property = propertyService.save(property);
             return new ResponseEntity(new PropertyResponseDTO(property), HttpStatus.CREATED);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
@@ -53,8 +53,8 @@ public class PropertyControllerImpl implements PropertyController {
         try {
             Property property = new Property(obj);
             property.setId(id);
-            propertyService.update(id, property);
-            return ResponseEntity.ok().body("Property with id " + id + " updated successfully");
+            property = propertyService.update(id, property);
+            return ResponseEntity.ok().body(new PropertyResponseDTO(property));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }

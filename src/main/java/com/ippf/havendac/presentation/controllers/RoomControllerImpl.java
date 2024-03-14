@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/rooms")
 @AllArgsConstructor
@@ -25,7 +27,8 @@ public class RoomControllerImpl implements RoomController {
             @RequestParam(value = "propertyId", required = false) Integer propertyId) {
         try {
             Room roomFilter = converterService.filterToRoom(roomId, area, propertyId);
-            return ResponseEntity.ok().body(roomService.find(roomFilter).stream().map(RoomResponseDTO::new));
+            List<Room> rooms = roomService.find(roomFilter);
+            return ResponseEntity.ok().body(rooms.stream().map(RoomResponseDTO::new));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -36,7 +39,7 @@ public class RoomControllerImpl implements RoomController {
     public ResponseEntity save(@RequestBody RoomRequestDTO obj) {
         try {
             Room room = converterService.dtoToRoom(obj);
-            roomService.save(room);
+            room = roomService.save(room);
             return new ResponseEntity(new RoomResponseDTO(room), HttpStatus.CREATED);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
@@ -49,8 +52,8 @@ public class RoomControllerImpl implements RoomController {
         try {
             Room room = converterService.dtoToRoom(obj);
             room.setId(id);
-            roomService.save(room);
-            return ResponseEntity.ok().body("Room with id " + id + " updated successfully");
+            room = roomService.save(room);
+            return ResponseEntity.ok().body(new RoomResponseDTO(room));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -61,7 +64,7 @@ public class RoomControllerImpl implements RoomController {
     public ResponseEntity deleteById(@PathVariable("id") int id) {
         try {
             roomService.deleteById(id);
-            return ResponseEntity.ok().body("Room with id " + id + " deleted successfully");
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }

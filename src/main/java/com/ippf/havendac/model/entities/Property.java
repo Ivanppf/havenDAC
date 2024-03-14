@@ -15,16 +15,16 @@ import lombok.*;
 public class Property implements HavenEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private PropertyType type;
     @Column(name = "isAvailable", nullable = false)
-    private boolean isAvailable;
+    private Boolean isAvailable;
     @Column(name = "isCountryside", nullable = false)
-    private boolean isCountryside;
+    private Boolean isCountryside;
     @Column(name = "hasSwimmingPool", nullable = false)
-    private boolean hasSwimmingPool;
+    private Boolean hasSwimmingPool;
     @Column(columnDefinition = "TEXT")
     private String description;
 
@@ -34,6 +34,18 @@ public class Property implements HavenEntity {
         isAvailable = propertyRequestDTO.isAvailable();
         isCountryside = propertyRequestDTO.isCountryside();
         hasSwimmingPool = propertyRequestDTO.hasSwimmingPool();
+    }
+
+    public Property(Integer id,
+                    PropertyType type,
+                    Boolean isAvailable,
+                    Boolean isCountryside,
+                    Boolean hasSwimmingPool) {
+        this.id = id;
+        this.type = type;
+        this.isAvailable = isAvailable;
+        this.isCountryside = isCountryside;
+        this.hasSwimmingPool = hasSwimmingPool;
     }
 
 }

@@ -5,9 +5,9 @@ import jakarta.validation.constraints.NotNull;
 
 public record PropertyRequestDTO(
         @NotNull PropertyType type,
-        @NotNull boolean isAvailable,
-        @NotNull boolean isCountryside,
-        @NotNull boolean hasSwimmingPool,
+        @NotNull Boolean isAvailable,
+        @NotNull Boolean isCountryside,
+        @NotNull Boolean hasSwimmingPool,
         @NotNull String description
-) implements RequestDTO {
+) {
 }

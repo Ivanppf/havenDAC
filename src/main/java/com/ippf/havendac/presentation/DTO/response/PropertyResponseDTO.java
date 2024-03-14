@@ -10,8 +10,8 @@ public record PropertyResponseDTO(
         boolean isCountryside,
         boolean hasSwimmingPool,
         String description
-) implements ResponseDTO {
+) {
     public PropertyResponseDTO(Property property) {
-        this(property.getId(), property.getType(), property.isAvailable(), property.isCountryside(), property.isHasSwimmingPool(), property.getDescription());
+        this(property.getId(), property.getType(), property.getIsAvailable(), property.getIsCountryside(), property.getHasSwimmingPool(), property.getDescription());
     }
 }

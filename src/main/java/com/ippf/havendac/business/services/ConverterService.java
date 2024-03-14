@@ -18,4 +18,9 @@ public class ConverterService {
         return room;
     }
 
+    public Room filterToRoom(Integer roomId, Float area, Integer propertyId) {
+        if (propertyId == null) return new Room(roomId, area, null);
+        Property property = propertyService.findById(propertyId);
+        return new Room(roomId, area, property);
+    }
 }

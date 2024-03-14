@@ -4,13 +4,15 @@ package com.ippf.havendac.business.services;
 import com.ippf.havendac.model.entities.Property;
 import com.ippf.havendac.model.repository.PropertyRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @AllArgsConstructor
 @Service
-public class PropertyServiceImpl implements GenericCRUDService<Property> {
+public class PropertyServiceImpl implements PropertyService {
 
     private final PropertyRepository propertyRepository;
 
@@ -20,8 +22,13 @@ public class PropertyServiceImpl implements GenericCRUDService<Property> {
     }
 
     @Override
-    public List<Property> findAll() {
-        return propertyRepository.findAll();
+    public List<Property> find(Property propertyFilter) {
+        Example example = Example.of(propertyFilter,
+                ExampleMatcher.matching()
+                        .withIgnoreCase()
+                        .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING));
+        System.out.println(propertyFilter);
+        return propertyRepository.findAll(example);
     }
 
     @Override
@@ -31,14 +38,21 @@ public class PropertyServiceImpl implements GenericCRUDService<Property> {
 
     @Override
     public void update(int id, Property obj) {
-        findById(id);
+        existsById(id);
         propertyRepository.save(obj);
     }
 
     @Override
     public void deleteById(int id) {
-        findById(id);
+        existsById(id);
         propertyRepository.deleteById(id);
-
     }
+
+    @Override
+    public void existsById(int id) {
+        if (!propertyRepository.existsById(id)) {
+            throw new RuntimeException("Property with id " + id + " not found");
+        }
+    }
+
 }

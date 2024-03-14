@@ -27,7 +27,6 @@ public class PropertyServiceImpl implements PropertyService {
                 ExampleMatcher.matching()
                         .withIgnoreCase()
                         .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING));
-        System.out.println(propertyFilter);
         return propertyRepository.findAll(example);
     }
 

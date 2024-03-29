@@ -14,7 +14,7 @@ import org.springframework.web.context.annotation.SessionScope;
 import java.util.List;
 
 @RestController
-@RequestMapping("/rooms")
+@RequestMapping("/api/rooms")
 @SessionScope
 @AllArgsConstructor
 public class RoomControllerImpl implements RoomController {

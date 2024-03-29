@@ -16,7 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @RestController
 @SessionScope
-@RequestMapping("/properties")
+@RequestMapping("/api/properties")
 public class PropertyControllerImpl implements PropertyController {
 
     private final PropertyServiceImpl propertyService;

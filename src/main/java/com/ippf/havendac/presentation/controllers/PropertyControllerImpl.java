@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.annotation.SessionScope;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
@@ -44,6 +45,25 @@ public class PropertyControllerImpl implements PropertyController {
             Property property = new Property(obj);
             property = propertyService.save(property);
             return new ResponseEntity(new PropertyResponseDTO(property), HttpStatus.CREATED);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @Override
+    @PostMapping("/all")
+    public ResponseEntity saveAll(@RequestBody List<PropertyRequestDTO> objList) {
+        try {
+            List<Property> propertyList = new ArrayList<>();
+            objList.forEach(p -> {
+                propertyList.add(new Property(p));
+            });
+            List<Property> savedProperties = propertyService.saveAll(propertyList);
+            List<PropertyResponseDTO> savedPropertiesDTO = new ArrayList<>();
+            savedProperties.forEach(p -> {
+                savedPropertiesDTO.add(new PropertyResponseDTO(p));
+            });
+            return new ResponseEntity(savedPropertiesDTO, HttpStatus.CREATED);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }

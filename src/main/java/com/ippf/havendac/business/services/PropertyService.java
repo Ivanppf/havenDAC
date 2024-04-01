@@ -11,6 +11,8 @@ public interface PropertyService {
 
     Property save(Property obj);
 
+    List<Property> saveAll(List<Property> propertyList);
+
     Property update(int id, Property obj);
 
     void deleteById(int id);

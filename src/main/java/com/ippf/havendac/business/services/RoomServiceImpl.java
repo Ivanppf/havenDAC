@@ -8,6 +8,7 @@ import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.annotation.SessionScope;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -31,6 +32,17 @@ public class RoomServiceImpl implements RoomService {
         float area = obj.getLength() * obj.getWidth();
         obj.setArea(area);
         return roomRepository.save(obj);
+    }
+
+    @Override
+    public List<Room> saveAll(List<Room> obj) {
+        List<Room> roomList = new ArrayList<>();
+        obj.forEach(r -> {
+            float area = r.getLength() * r.getWidth();
+            r.setArea(area);
+            roomList.add(r);
+        });
+        return roomRepository.saveAll(roomList);
     }
 
     @Override

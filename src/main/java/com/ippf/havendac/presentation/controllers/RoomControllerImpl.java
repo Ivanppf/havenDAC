@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.annotation.SessionScope;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -43,6 +44,26 @@ public class RoomControllerImpl implements RoomController {
             Room room = converterService.dtoToRoom(obj);
             room = roomService.save(room);
             return new ResponseEntity(new RoomResponseDTO(room), HttpStatus.CREATED);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @Override
+    @PostMapping("/all")
+    public ResponseEntity saveAll(@RequestBody List<RoomRequestDTO> objList) {
+        try {
+            List<Room> roomList = new ArrayList<>();
+            objList.forEach(r -> {
+                Room room = converterService.dtoToRoom(r);
+                roomList.add(room);
+            });
+            List<Room> savedRooms = roomService.saveAll(roomList);
+            List<RoomResponseDTO> savedRoomsDTO = new ArrayList<>();
+            savedRooms.forEach(r -> {
+                savedRoomsDTO.add(new RoomResponseDTO(r));
+            });
+            return new ResponseEntity(savedRoomsDTO, HttpStatus.CREATED);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }

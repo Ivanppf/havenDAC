@@ -38,6 +38,11 @@ public class PropertyServiceImpl implements PropertyService {
     }
 
     @Override
+    public List<Property> saveAll(List<Property> propertyList) {
+        return propertyRepository.saveAll(propertyList);
+    }
+
+    @Override
     public Property update(int id, Property obj) {
         existsById(id);
         return propertyRepository.save(obj);

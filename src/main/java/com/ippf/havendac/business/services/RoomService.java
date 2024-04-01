@@ -9,6 +9,8 @@ public interface RoomService {
 
     Room save(Room obj);
 
+    List<Room> saveAll(List<Room> roomList);
+
     Room update(int id, Room obj);
 
     void deleteById(int id);

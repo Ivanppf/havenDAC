@@ -3,6 +3,8 @@ package com.ippf.havendac.presentation.controllers;
 import com.ippf.havendac.presentation.DTO.request.RoomRequestDTO;
 import org.springframework.http.ResponseEntity;
 
+import java.util.List;
+
 public interface RoomController {
     ResponseEntity find(
             Integer roomId,
@@ -10,6 +12,8 @@ public interface RoomController {
             Integer propertyId);
 
     ResponseEntity save(RoomRequestDTO obj);
+
+    ResponseEntity saveAll(List<RoomRequestDTO> objList);
 
     ResponseEntity update(int id, RoomRequestDTO obj);
 

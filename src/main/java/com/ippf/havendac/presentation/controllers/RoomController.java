@@ -1,5 +1,6 @@
 package com.ippf.havendac.presentation.controllers;
 
+import com.ippf.havendac.model.ENUM.RoomType;
 import com.ippf.havendac.presentation.DTO.request.RoomRequestDTO;
 import org.springframework.http.ResponseEntity;
 
@@ -9,6 +10,7 @@ public interface RoomController {
     ResponseEntity find(
             Integer roomId,
             Float area,
+            RoomType roomType,
             Integer propertyId);
 
     ResponseEntity save(RoomRequestDTO obj);

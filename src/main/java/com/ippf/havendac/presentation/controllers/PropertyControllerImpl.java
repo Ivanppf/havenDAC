@@ -5,6 +5,7 @@ import com.ippf.havendac.model.ENUM.PropertyType;
 import com.ippf.havendac.model.entities.Property;
 import com.ippf.havendac.presentation.DTO.request.PropertyRequestDTO;
 import com.ippf.havendac.presentation.DTO.response.PropertyResponseDTO;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,7 +41,7 @@ public class PropertyControllerImpl implements PropertyController {
 
     @Override
     @PostMapping
-    public ResponseEntity save(@RequestBody PropertyRequestDTO obj) {
+    public ResponseEntity save(@Valid @RequestBody PropertyRequestDTO obj) {
         try {
             Property property = new Property(obj);
             property = propertyService.save(property);
@@ -52,7 +53,7 @@ public class PropertyControllerImpl implements PropertyController {
 
     @Override
     @PostMapping("/all")
-    public ResponseEntity saveAll(@RequestBody List<PropertyRequestDTO> objList) {
+    public ResponseEntity saveAll(@Valid @RequestBody List<PropertyRequestDTO> objList) {
         try {
             List<Property> propertyList = new ArrayList<>();
             objList.forEach(p -> {
@@ -71,7 +72,7 @@ public class PropertyControllerImpl implements PropertyController {
 
     @Override
     @PutMapping("{id}")
-    public ResponseEntity update(@PathVariable("id") int id, @RequestBody PropertyRequestDTO obj) {
+    public ResponseEntity update(@PathVariable("id") int id, @Valid @RequestBody PropertyRequestDTO obj) {
         try {
             Property property = new Property(obj);
             property.setId(id);

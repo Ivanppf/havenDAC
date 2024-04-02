@@ -2,9 +2,11 @@ package com.ippf.havendac.presentation.controllers;
 
 import com.ippf.havendac.business.services.ConverterService;
 import com.ippf.havendac.business.services.RoomServiceImpl;
+import com.ippf.havendac.model.ENUM.RoomType;
 import com.ippf.havendac.model.entities.Room;
 import com.ippf.havendac.presentation.DTO.request.RoomRequestDTO;
 import com.ippf.havendac.presentation.DTO.response.RoomResponseDTO;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,9 +29,10 @@ public class RoomControllerImpl implements RoomController {
     public ResponseEntity find(
             @RequestParam(value = "roomId", required = false) Integer roomId,
             @RequestParam(value = "area", required = false) Float area,
+            @RequestParam(value = "roomType", required = false) RoomType roomType,
             @RequestParam(value = "propertyId", required = false) Integer propertyId) {
         try {
-            Room roomFilter = converterService.filterToRoom(roomId, area, propertyId);
+            Room roomFilter = converterService.filterToRoom(roomId, area, roomType, propertyId);
             List<Room> rooms = roomService.find(roomFilter);
             return ResponseEntity.ok().body(rooms.stream().map(RoomResponseDTO::new));
         } catch (Exception e) {
@@ -39,7 +42,7 @@ public class RoomControllerImpl implements RoomController {
 
     @Override
     @PostMapping
-    public ResponseEntity save(@RequestBody RoomRequestDTO obj) {
+    public ResponseEntity save(@Valid @RequestBody RoomRequestDTO obj) {
         try {
             Room room = converterService.dtoToRoom(obj);
             room = roomService.save(room);
@@ -51,7 +54,7 @@ public class RoomControllerImpl implements RoomController {
 
     @Override
     @PostMapping("/all")
-    public ResponseEntity saveAll(@RequestBody List<RoomRequestDTO> objList) {
+    public ResponseEntity saveAll(@Valid @RequestBody List<RoomRequestDTO> objList) {
         try {
             List<Room> roomList = new ArrayList<>();
             objList.forEach(r -> {
@@ -71,7 +74,7 @@ public class RoomControllerImpl implements RoomController {
 
     @Override
     @PutMapping("{id}")
-    public ResponseEntity update(@PathVariable("id") int id, @RequestBody RoomRequestDTO obj) {
+    public ResponseEntity update(@PathVariable("id") int id, @Valid @RequestBody RoomRequestDTO obj) {
         try {
             Room room = converterService.dtoToRoom(obj);
             room.setId(id);

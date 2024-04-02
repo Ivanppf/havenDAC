@@ -1,5 +1,6 @@
 package com.ippf.havendac.model.entities;
 
+import com.ippf.havendac.model.ENUM.RoomType;
 import com.ippf.havendac.presentation.DTO.request.RoomRequestDTO;
 import jakarta.persistence.*;
 import lombok.*;
@@ -21,6 +22,9 @@ public class Room {
     private Float length;
     @Column(nullable = false)
     private Float width;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private RoomType roomType;
     private Float area;
     @ManyToOne(fetch = FetchType.EAGER)
     @OnDelete(action = OnDeleteAction.CASCADE)
@@ -30,13 +34,16 @@ public class Room {
     public Room(RoomRequestDTO roomRequestDTO) {
         length = roomRequestDTO.length();
         width = roomRequestDTO.width();
+        roomType = roomRequestDTO.roomType();
     }
 
     public Room(Integer roomId,
                 Float area,
+                RoomType roomType,
                 Property property) {
         id = roomId;
         this.area = area;
+        this.roomType = roomType;
         this.property = property;
     }
 }

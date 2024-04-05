@@ -2,6 +2,7 @@ package com.ippf.havendac.presentation.controllers;
 
 import com.ippf.havendac.model.ENUM.RoomType;
 import com.ippf.havendac.presentation.DTO.request.RoomRequestDTO;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
@@ -13,11 +14,11 @@ public interface RoomController {
             RoomType roomType,
             Integer propertyId);
 
-    ResponseEntity save(RoomRequestDTO obj);
+    ResponseEntity save(@Valid RoomRequestDTO obj);
 
-    ResponseEntity saveAll(List<RoomRequestDTO> objList);
+    ResponseEntity saveAll(@Valid List<RoomRequestDTO> objList);
 
-    ResponseEntity update(int id, RoomRequestDTO obj);
+    ResponseEntity update(int id, @Valid RoomRequestDTO obj);
 
     ResponseEntity deleteById(int id);
 }

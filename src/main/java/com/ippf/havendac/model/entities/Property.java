@@ -30,7 +30,7 @@ public class Property {
 
     public Property(PropertyRequestDTO propertyRequestDTO) {
         description = propertyRequestDTO.description();
-        type = propertyRequestDTO.type();
+        type = propertyRequestDTO.propertyType();
         isAvailable = propertyRequestDTO.isAvailable();
         isCountryside = propertyRequestDTO.isCountryside();
         hasSwimmingPool = propertyRequestDTO.hasSwimmingPool();

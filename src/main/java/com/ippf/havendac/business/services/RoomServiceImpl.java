@@ -6,13 +6,12 @@ import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
-import org.springframework.web.context.annotation.SessionScope;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-@SessionScope
+//@SessionScope
 @AllArgsConstructor
 public class RoomServiceImpl implements RoomService {
 

@@ -3,6 +3,7 @@ package com.ippf.havendac.business.services;
 import com.ippf.havendac.model.entities.User;
 import com.ippf.havendac.model.repository.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
 
     private UserRepository userRepository;
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public User findById(Integer id) {
@@ -18,6 +20,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User save(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
 
@@ -26,4 +29,10 @@ public class UserServiceImpl implements UserService {
         user.setUserId(id);
         return userRepository.save(user);
     }
+
+    @Override
+    public void deleteById(Integer id) {
+        userRepository.delete(findById(id));
+    }
+
 }

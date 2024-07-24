@@ -5,6 +5,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.ippf.havendac.model.entities.User;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
@@ -14,10 +15,10 @@ import java.time.temporal.ChronoUnit;
 @Service
 public class TokenService {
 
-    //    @Value("${jwt.secret}")
-    private String secret = "NM_5-ND-zg8HhY3";
-    //    @Value("${jwt.expiration}")
-    private Integer expiration = 1;
+    @Value("${jwt.secret}")
+    private String secret;
+    @Value("${jwt.expiration}")
+    private Integer expiration;
 
     public String generateToken(User user) {
         try {

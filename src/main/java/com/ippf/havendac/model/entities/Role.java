@@ -1,21 +1,17 @@
 package com.ippf.havendac.model.entities;
 
-import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+public enum Role {
 
-@Entity
-@Table(name = "tb_role")
-@Data
-@NoArgsConstructor
-public class Role {
+    ADMIN("admin"),
+    USER("user");
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer roleId;
-    private String name;
+    private String role;
 
-    public Role(String name) {
-        this.name = name;
+    Role(String role) {
+        this.role = role;
+    }
+
+    public String getRole() {
+        return role;
     }
 }

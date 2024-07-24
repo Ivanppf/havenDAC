@@ -32,7 +32,7 @@ public class UserController {
     @PostMapping
     public ResponseEntity save(@Valid @RequestBody UserRequestDTO userRequestDTO) {
         try {
-            User user = converterService.dtoToUser(userRequestDTO);
+            User user = new User(userRequestDTO);
             UserResponseDTO userResponseDTO = new UserResponseDTO(userService.save(user));
             return new ResponseEntity(userResponseDTO, HttpStatus.CREATED);
         } catch (Exception e) {
@@ -43,7 +43,7 @@ public class UserController {
     @PutMapping("{id}")
     public ResponseEntity update(@PathVariable("id") Integer id, @Valid @RequestBody UserRequestDTO userRequestDTO) {
         try {
-            User user = converterService.dtoToUser(userRequestDTO);
+            User user = new User(userRequestDTO);
             user.setUserId(id);
             UserResponseDTO userResponseDTO = new UserResponseDTO(userService.save(user));
             return new ResponseEntity(userResponseDTO, HttpStatus.CREATED);

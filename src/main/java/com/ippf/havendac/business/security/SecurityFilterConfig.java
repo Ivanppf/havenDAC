@@ -26,20 +26,21 @@ public class SecurityFilterConfig {
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(HttpMethod.GET, "/api/users/{id}").hasRole("USER")
-                        .requestMatchers(HttpMethod.POST, "/api/users").hasRole("USER")
-                        .requestMatchers(HttpMethod.PUT, "/api/users/{id}").hasRole("USER")
-                        .requestMatchers(HttpMethod.DELETE, "/api/users/{id}").hasRole("USER")
+                        .requestMatchers(HttpMethod.GET, "/api/users").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/users/{id}").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/users").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/users/{id}").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/users/{id}").hasRole("ADMIN")
 
-                        .requestMatchers(HttpMethod.GET, "/api/properties/{id}").hasRole("USER")
-                        .requestMatchers(HttpMethod.POST, "/api/properties").hasRole("")
-                        .requestMatchers(HttpMethod.PUT, "/api/properties/{id}").hasRole("")
-                        .requestMatchers(HttpMethod.DELETE, "/api/properties/{id}").hasRole("") //configurar
+                        .requestMatchers(HttpMethod.GET, "/api/properties").hasRole("USER")
+                        .requestMatchers(HttpMethod.POST, "/api/properties").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/properties/{id}").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/properties/{id}").hasRole("ADMIN")
 
-                        .requestMatchers(HttpMethod.GET, "/api/rooms/{id}").hasRole("")
-                        .requestMatchers(HttpMethod.POST, "/api/rooms").hasRole("")
-                        .requestMatchers(HttpMethod.PUT, "/api/rooms/{id}").hasRole("")
-                        .requestMatchers(HttpMethod.DELETE, "/api/rooms/{id}").hasRole("")
+                        .requestMatchers(HttpMethod.GET, "/api/rooms").hasRole("USER")
+                        .requestMatchers(HttpMethod.POST, "/api/rooms").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/rooms/{id}").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/rooms/{id}").hasRole("ADMIN")
 
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                         .anyRequest().authenticated())
@@ -56,5 +57,6 @@ public class SecurityFilterConfig {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
 
 }

@@ -24,12 +24,6 @@ public class User implements UserDetails {
     private String username;
     private String email;
     private String password;
-    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "tb_user_role",
-            joinColumns = @JoinColumn(name = "userId"),
-            inverseJoinColumns = @JoinColumn(name = "roleId")
-    )
     private List<Role> roles;
 
     public User(UserRequestDTO userRequestDTO) {
@@ -43,10 +37,13 @@ public class User implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> authorities = new ArrayList<>();
         roles.forEach((role) -> {
-            switch (role.getName()) {
-                case "User" -> authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
-                case "Admin" -> authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
-                default -> throw new RuntimeException("Role " + role.getName() + " not found");
+            switch (role.getRole()) {
+                case "user" -> authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+                case "admin" -> {
+                    authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+                    authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+                }
+                default -> throw new RuntimeException("Role " + role.getRole() + " not found");
             }
         });
         return authorities;

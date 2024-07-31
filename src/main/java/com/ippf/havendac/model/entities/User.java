@@ -21,14 +21,14 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer userId;
     private String name;
-    private String username;
+    private String nickname;
     private String email;
     private String password;
     private List<Role> roles;
 
     public User(UserRequestDTO userRequestDTO) {
         this.name = userRequestDTO.name();
-        this.username = userRequestDTO.username();
+        this.nickname = userRequestDTO.nickname();
         this.email = userRequestDTO.email();
         this.password = userRequestDTO.password();
     }

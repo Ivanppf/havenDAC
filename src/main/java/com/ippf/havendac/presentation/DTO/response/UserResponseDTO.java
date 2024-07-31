@@ -8,11 +8,11 @@ import java.util.List;
 public record UserResponseDTO(
         Integer id,
         String name,
-        String username,
+        String nickname,
         String email,
         List<Role> roles
 ) {
     public UserResponseDTO(User user) {
-        this(user.getUserId(), user.getName(), user.getUsername(), user.getEmail(), user.getRoles());
+        this(user.getUserId(), user.getName(), user.getNickname(), user.getEmail(), user.getRoles());
     }
 }

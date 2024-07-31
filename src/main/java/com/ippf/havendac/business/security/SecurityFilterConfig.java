@@ -28,7 +28,7 @@ public class SecurityFilterConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.GET, "/api/users").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/api/users/{id}").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.POST, "/api/users").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/users").permitAll()
                         .requestMatchers(HttpMethod.PUT, "/api/users/{id}").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/api/users/{id}").hasRole("ADMIN")
 
@@ -42,9 +42,11 @@ public class SecurityFilterConfig {
                         .requestMatchers(HttpMethod.PUT, "/api/rooms/{id}").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/api/rooms/{id}").hasRole("ADMIN")
 
-                        .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/auth/login").permitAll()
+
                         .anyRequest().authenticated())
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
+                .logout(logout -> logout.clearAuthentication(true).invalidateHttpSession(true).logoutUrl("/api/logout"))
                 .build();
     }
 
@@ -57,6 +59,4 @@ public class SecurityFilterConfig {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
-
 }

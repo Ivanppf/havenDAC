@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("auth")
+@RequestMapping("/api/auth")
 @AllArgsConstructor
 public class AuthenticationController {
 
@@ -26,7 +26,11 @@ public class AuthenticationController {
     public ResponseEntity login(@RequestBody @Valid AuthenticationDTO authenticationDTO) {
         var usernamePassword = new UsernamePasswordAuthenticationToken(authenticationDTO.email(), authenticationDTO.password());
         var auth = this.authenticationManager.authenticate(usernamePassword);
-        var token = tokenService.generateToken((User) auth.getPrincipal());
-        return ResponseEntity.ok().body(new TokenResponseDTO(token));
+        User user = (User) auth.getPrincipal();
+        user.setPassword(null);
+        var token = tokenService.generateToken(user);
+        return ResponseEntity.ok().body(new TokenResponseDTO(token, user));
     }
+
+    //implementar logout
 }

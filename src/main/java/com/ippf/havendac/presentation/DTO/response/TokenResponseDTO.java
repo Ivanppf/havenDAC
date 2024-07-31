@@ -1,4 +1,6 @@
 package com.ippf.havendac.presentation.DTO.response;
 
-public record TokenResponseDTO(String bearer) {
+import com.ippf.havendac.model.entities.User;
+
+public record TokenResponseDTO(String bearer, User user) {
 }

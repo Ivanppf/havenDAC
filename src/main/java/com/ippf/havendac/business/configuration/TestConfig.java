@@ -94,7 +94,7 @@ public class TestConfig implements CommandLineRunner {
 
         User user1 = new User();
         user1.setName("Rhaenyra Targaryen");
-        user1.setUsername("rhaenyra");
+        user1.setNickname("rhaenyra");
         user1.setEmail("rhaenyra@gmail.com");
         user1.setPassword(passwordEncoder.encode("rhaenyra123"));
         user1.setRoles((List.of(Role.ADMIN)));
@@ -103,69 +103,67 @@ public class TestConfig implements CommandLineRunner {
 
         User user2 = new User();
         user2.setName("Daemon Targaryen");
-        user2.setUsername("daemon");
+        user2.setNickname("daemon");
         user2.setEmail("daemon@gmail.com");
         user2.setPassword("daemon123");
 
         User user3 = new User();
         user3.setName("Viserys I Targaryen");
-        user3.setUsername("viserys");
+        user3.setNickname("viserys");
         user3.setEmail("viserys@gmail.com");
         user3.setPassword("viserys123");
 
         User user4 = new User();
         user4.setName("Alicent Hightower");
-        user4.setUsername("alicent");
+        user4.setNickname("alicent");
         user4.setEmail("alicent@gmail.com");
         user4.setPassword("alicent123");
 
         User user5 = new User();
         user5.setName("Otto Hightower");
-        user5.setUsername("otto");
+        user5.setNickname("otto");
         user5.setEmail("otto@gmail.com");
         user5.setPassword("otto123");
 
         User user6 = new User();
         user6.setName("Corlys Velaryon");
-        user6.setUsername("corlys");
+        user6.setNickname("corlys");
         user6.setEmail("corlys@gmail.com");
         user6.setPassword("corlys123");
 
         User user7 = new User();
         user7.setName("Rhaenys Targaryen");
-        user7.setUsername("rhaenys");
+        user7.setNickname("rhaenys");
         user7.setEmail("rhaenys@gmail.com");
         user7.setPassword("rhaenys123");
 
         User user8 = new User();
         user8.setName("Laenor Velaryon");
-        user8.setUsername("laenor");
+        user8.setNickname("laenor");
         user8.setEmail("laenor@gmail.com");
         user8.setPassword("laenor123");
 
         User user9 = new User();
         user9.setName("Aemond Targaryen");
-        user9.setUsername("aemond");
+        user9.setNickname("aemond");
         user9.setEmail("aemond@gmail.com");
         user9.setPassword("aemond123");
 
         User user10 = new User();
         user10.setName("Aegon II Targaryen");
-        user10.setUsername("aegon");
+        user10.setNickname("aegon");
         user10.setEmail("aegon@gmail.com");
         user10.setPassword("aegon123");
 
-        User user70 = new User();
-        user7.setName("Rhaenys Targaryen");
-        user7.setUsername("rhaenys");
-        user7.setEmail("rhaenys@gmail.com");
-        user7.setPassword("rhaenys123");
 
-
-        List users = List.of(user2, user3, user4, user5, user6, user7, user8, user9, user10);
-        users.forEach((user) -> {
-            userService.save((User) user);
-        });
+        try {
+            List<User> users = List.of(user2, user3, user4, user5, user6, user7, user8, user9, user10);
+            users.forEach((user) -> {
+                userService.save(user);
+            });
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
 
     }
 }

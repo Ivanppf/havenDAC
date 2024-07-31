@@ -1,6 +1,5 @@
 package com.ippf.havendac.presentation.controllers;
 
-import com.ippf.havendac.business.services.ConverterService;
 import com.ippf.havendac.business.services.UserService;
 import com.ippf.havendac.model.entities.User;
 import com.ippf.havendac.presentation.DTO.request.UserRequestDTO;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     private UserService userService;
-    private ConverterService converterService;
 
     @GetMapping("{id}")
     public ResponseEntity findById(@PathVariable("id") Integer id) {
